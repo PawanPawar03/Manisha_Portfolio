@@ -1311,6 +1311,52 @@ img {
   padding-top: 0.8rem;
   font-size: 0.78rem;
   color: #64748b;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.stamp-pill {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #059669;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.receipt-actions-bar {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px dashed #cbd5e1;
+  flex-wrap: wrap;
+}
+
+.receipt-actions-bar .btn {
+  flex: 1;
+  font-size: 0.85rem;
+  padding: 0.65rem 1rem;
+  white-space: nowrap;
+}
+
+.btn-print-voucher {
+  background: #0f172a;
+  color: #ffffff;
+}
+
+.btn-print-voucher:hover {
+  background: #1e293b;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.mobile-scroll-btn {
+  display: none;
 }
 
 .print-mini-btn {
@@ -2317,23 +2363,71 @@ img {
     background: #ffffff !important;
     color: #000000 !important;
   }
+  
+  /* Hide all non-printable layout elements */
   .navbar, .nav-overlay, .hero-section, .about-section, .skills-section, 
-  .interactive-section, .education-section, .contact-section, 
-  .footer, .back-to-top, .ambient-glow, #particles-canvas, 
-  .scroll-progress-bar, .resume-toolbar {
+  .education-section, .contact-section, .footer, .back-to-top, 
+  .ambient-glow, #particles-canvas, .scroll-progress-bar, 
+  .resume-toolbar, .sim-nav, .sim-form-area, .calc-btn-row, 
+  .receipt-actions-bar, .print-mini-btn, .mobile-scroll-btn {
     display: none !important;
   }
-  #resume {
+
+  /* Scenario 1: Printing Voucher Receipt */
+  body.printing-voucher #resume {
+    display: none !important;
+  }
+  body.printing-voucher .interactive-section {
+    display: block !important;
     padding: 0 !important;
     margin: 0 !important;
   }
-  .resume-wrapper {
+  body.printing-voucher .simulator-wrapper {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+  body.printing-voucher .sim-panel {
+    display: none !important;
+  }
+  body.printing-voucher #sim-gst-calculator {
+    display: block !important;
+  }
+  body.printing-voucher .sim-grid {
+    display: block !important;
+  }
+  body.printing-voucher .sim-result-area {
+    display: block !important;
+    width: 100% !important;
+  }
+  body.printing-voucher .invoice-receipt-card {
+    box-shadow: none !important;
+    border: 2px solid #0f172a !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 24px !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    page-break-inside: avoid;
+  }
+
+  /* Scenario 2: Printing Resume (Default) */
+  body:not(.printing-voucher) .interactive-section {
+    display: none !important;
+  }
+  body:not(.printing-voucher) #resume {
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  body:not(.printing-voucher) .resume-wrapper {
     box-shadow: none !important;
     border: none !important;
     padding: 0 !important;
     max-width: 100% !important;
   }
-  .digital-resume-sheet {
+  body:not(.printing-voucher) .digital-resume-sheet {
     box-shadow: none !important;
     padding: 0 !important;
     border: none !important;

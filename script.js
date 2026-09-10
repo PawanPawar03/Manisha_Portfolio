@@ -427,10 +427,92 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const recalculateBtn = document.getElementById('calc-recalculate-btn');
+  const viewReceiptMobileBtn = document.getElementById('view-receipt-mobile-btn');
+  const printVoucherBtn = document.getElementById('print-voucher-btn');
+  const shareVoucherWhatsapp = document.getElementById('share-voucher-whatsapp');
+  const invoiceReceiptCard = document.getElementById('invoice-receipt-card');
+
+  function highlightReceipt() {
+    if (invoiceReceiptCard) {
+      invoiceReceiptCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      invoiceReceiptCard.style.transition = 'outline 0.3s ease, box-shadow 0.3s ease';
+      invoiceReceiptCard.style.outline = '3px solid var(--accent-primary)';
+      invoiceReceiptCard.style.boxShadow = '0 0 25px rgba(99, 102, 241, 0.45)';
+      setTimeout(() => {
+        invoiceReceiptCard.style.outline = 'none';
+        invoiceReceiptCard.style.boxShadow = '';
+      }, 1600);
+    }
+  }
+
   if (recalculateBtn) {
     recalculateBtn.addEventListener('click', () => {
       calculateVoucher();
       showToast('Voucher recalculated successfully!', 'success');
+      if (window.innerWidth <= 768) {
+        setTimeout(highlightReceipt, 200);
+      }
+    });
+  }
+
+  if (viewReceiptMobileBtn) {
+    viewReceiptMobileBtn.addEventListener('click', () => {
+      highlightReceipt();
+    });
+  }
+
+  // Print Tax Invoice Voucher Functionality
+  if (printVoucherBtn) {
+    printVoucherBtn.addEventListener('click', () => {
+      document.body.classList.add('printing-voucher');
+      showToast('Opening print dialog for Tax Invoice Voucher...', 'info');
+
+      // Trigger browser print
+      setTimeout(() => {
+        window.print();
+      }, 150);
+
+      // Clean up print class after printing dialog closes
+      window.addEventListener('afterprint', function cleanupVoucherPrint() {
+        document.body.classList.remove('printing-voucher');
+        window.removeEventListener('afterprint', cleanupVoucherPrint);
+      });
+
+      // Fallback timeout cleanup
+      setTimeout(() => {
+        document.body.classList.remove('printing-voucher');
+      }, 3000);
+    });
+  }
+
+  // Share Voucher via WhatsApp
+  if (shareVoucherWhatsapp) {
+    shareVoucherWhatsapp.addEventListener('click', () => {
+      const client = invClient.value.trim() || 'Valued Client';
+      const item = invItem.value.trim() || 'Services Rendered';
+      const qty = invQty.value || '1';
+      const rate = resRate.textContent;
+      const subtotal = resSubtotal.textContent;
+      const totalTax = `CGST: ${cgstAmount.textContent} + SGST: ${sgstAmount.textContent}`;
+      const total = grandTotal.textContent;
+
+      const summaryText = `*TAX INVOICE VOUCHER RECEIPT*\n` +
+        `----------------------------------------\n` +
+        `*Ref No:* PATKE/2026/V-0109\n` +
+        `*Billed To:* ${client}\n` +
+        `*Date:* 10-Sep-2026\n` +
+        `*Item:* ${item} (Qty: ${qty} @ ${rate})\n` +
+        `*Subtotal:* ${subtotal}\n` +
+        `*GST (${invGst.value}%):* ${totalTax}\n` +
+        `*Grand Total (Net):* ${total}\n` +
+        `----------------------------------------\n` +
+        `*Authorized Verification:* Manisha Avinash Patke\n` +
+        `Tally Prime & Advanced Excel Professional\n` +
+        `Phone: +91 7499059351`;
+
+      const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(summaryText)}`;
+      window.open(whatsappUrl, '_blank');
+      showToast('Opening WhatsApp to share voucher...', 'success');
     });
   }
 
@@ -656,6 +738,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const printResumeBtn = document.getElementById('print-resume-btn');
   if (printResumeBtn) {
     printResumeBtn.addEventListener('click', () => {
+      document.body.classList.remove('printing-voucher');
       window.print();
     });
   }

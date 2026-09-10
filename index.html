@@ -575,12 +575,15 @@
                   <button type="button" id="calc-reset-btn" class="btn btn-outline btn-sm">
                     <i class="fa-solid fa-eraser"></i> Reset
                   </button>
+                  <button type="button" id="view-receipt-mobile-btn" class="btn btn-secondary btn-sm mobile-scroll-btn">
+                    <i class="fa-solid fa-receipt"></i> View Generated Receipt ↓
+                  </button>
                 </div>
               </div>
 
               <!-- Output Invoice Card -->
-              <div class="sim-result-area">
-                <div class="invoice-receipt-card">
+              <div class="sim-result-area" id="sim-result-area">
+                <div class="invoice-receipt-card" id="invoice-receipt-card">
                   <div class="receipt-header">
                     <div>
                       <h4>TAX INVOICE VOUCHER</h4>
@@ -637,8 +640,18 @@
 
                   <div class="receipt-footer">
                     <span>Authorized Entry: <strong>Manisha Avinash Patke</strong></span>
-                    <button class="print-mini-btn" onclick="window.print()" title="Print Voucher">
+                    <span class="stamp-pill"><i class="fa-solid fa-stamp"></i> Certified Record</span>
+                  </div>
+
+                  <!-- Prominent Dedicated Print & Share Action Row -->
+                  <div class="receipt-actions-bar">
+                    <button type="button" id="print-voucher-btn" class="btn btn-primary btn-sm btn-print-voucher">
                       <i class="fa-solid fa-print"></i>
+                      <span>Print / Save Receipt (PDF)</span>
+                    </button>
+                    <button type="button" id="share-voucher-whatsapp" class="btn btn-whatsapp btn-sm">
+                      <i class="fa-brands fa-whatsapp"></i>
+                      <span>Share Receipt on WhatsApp</span>
                     </button>
                   </div>
                 </div>
