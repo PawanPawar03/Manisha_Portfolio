@@ -2658,16 +2658,26 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 2.8rem;
   }
 
   .profile-card-wrapper {
-    width: min(230px, 70vw);
-    height: 290px;
+    width: 100%;
+    max-width: 320px;
+    height: auto !important;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
   }
 
   .profile-frame {
-    border-radius: 20px;
+    width: min(220px, 66vw);
+    height: 275px;
+    border-radius: 22px;
+    margin: 0 auto 1.2rem auto;
+    flex-shrink: 0;
   }
 
   .floating-badge {
@@ -2679,10 +2689,25 @@ img {
     transform: none !important;
     animation: none !important;
     pointer-events: auto;
-    width: 100%;
-    max-width: 270px;
-    margin: 0.4rem auto 0;
+    width: min(280px, 88vw);
+    margin: 0.35rem auto;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    z-index: 2;
+  }
+
+  .hero-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .badge-pill {
+    margin-top: 0.2rem;
+    margin-bottom: 1.2rem;
   }
 
   /* About Section Mobile */
@@ -3050,8 +3075,15 @@ img {
     grid-template-columns: 1fr;
   }
 
+  .profile-frame {
+    width: min(200px, 60vw);
+    height: 250px;
+    margin-bottom: 1rem;
+  }
+
   .floating-badge {
-    padding: 0.55rem 0.8rem;
+    width: min(260px, 92vw);
+    padding: 0.5rem 0.75rem;
   }
 
   .badge-icon {
