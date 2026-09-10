@@ -31,6 +31,9 @@
   <div class="ambient-glow glow-bottom-right"></div>
   <canvas id="particles-canvas"></canvas>
 
+  <!-- Mobile Nav Overlay Backdrop -->
+  <div class="nav-overlay" id="nav-overlay"></div>
+
   <!-- Navigation Bar -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
@@ -45,6 +48,17 @@
       </a>
 
       <div class="nav-menu" id="nav-menu">
+        <div class="nav-menu-header">
+          <div class="nav-menu-profile">
+            <div class="brand-avatar-mini">
+              <img src="profile.jpg" alt="Manisha Patke thumbnail">
+            </div>
+            <span>Manisha Patke</span>
+          </div>
+          <button class="nav-close-btn" id="nav-close-btn" aria-label="Close navigation menu">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
         <ul class="nav-list">
           <li><a href="#home" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a></li>
           <li><a href="#about" class="nav-link"><i class="fa-solid fa-user"></i> About</a></li>
@@ -580,24 +594,26 @@
                     <div><strong>Date:</strong> <span id="res-date">10-Sep-2026</span></div>
                   </div>
 
-                  <table class="receipt-table">
-                    <thead>
-                      <tr>
-                        <th>Item</th>
-                        <th>Qty</th>
-                        <th>Rate</th>
-                        <th>Amount</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td id="res-item">Accounting & Audit Services</td>
-                        <td id="res-qty">2</td>
-                        <td id="res-rate">₹12,500.00</td>
-                        <td id="res-subtotal">₹25,000.00</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <div class="table-responsive">
+                    <table class="receipt-table">
+                      <thead>
+                        <tr>
+                          <th>Item</th>
+                          <th>Qty</th>
+                          <th>Rate</th>
+                          <th>Amount</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td id="res-item">Accounting & Audit Services</td>
+                          <td id="res-qty">2</td>
+                          <td id="res-rate">₹12,500.00</td>
+                          <td id="res-subtotal">₹25,000.00</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
 
                   <div class="receipt-summary">
                     <div class="summary-row">
@@ -990,105 +1006,109 @@
 
             <div class="res-sheet-block">
               <h3 class="res-heading"><i class="fa-solid fa-graduation-cap"></i> EDUCATIONAL QUALIFICATIONS</h3>
-              <table class="res-table">
-                <thead>
-                  <tr>
-                    <th>Exam / Degree</th>
-                    <th>Board / University</th>
-                    <th>Year</th>
-                    <th>Percentage</th>
-                    <th>Class</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>M.A.</strong> (Master of Arts)</td>
-                    <td>SRTMU, Nanded</td>
-                    <td>2022</td>
-                    <td><strong>73.33%</strong></td>
-                    <td>First Class</td>
-                  </tr>
-                  <tr>
-                    <td><strong>B.A.</strong> (Bachelor of Arts)</td>
-                    <td>SRTMU, Nanded</td>
-                    <td>2020</td>
-                    <td><strong>78.09%</strong></td>
-                    <td>First Class</td>
-                  </tr>
-                  <tr>
-                    <td><strong>H.S.C.</strong></td>
-                    <td>Latur Divisional Board</td>
-                    <td>2017</td>
-                    <td><strong>80.92%</strong></td>
-                    <td>Pass Class</td>
-                  </tr>
-                  <tr>
-                    <td><strong>S.S.C.</strong></td>
-                    <td>Latur Divisional Board</td>
-                    <td>2015</td>
-                    <td><strong>82.80%</strong></td>
-                    <td>First Class</td>
-                  </tr>
-                </tbody>
-              </table>
+              <div class="table-responsive">
+                <table class="res-table">
+                  <thead>
+                    <tr>
+                      <th>Exam / Degree</th>
+                      <th>Board / University</th>
+                      <th>Year</th>
+                      <th>Percentage</th>
+                      <th>Class</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>M.A.</strong> (Master of Arts)</td>
+                      <td>SRTMU, Nanded</td>
+                      <td>2022</td>
+                      <td><strong>73.33%</strong></td>
+                      <td>First Class</td>
+                    </tr>
+                    <tr>
+                      <td><strong>B.A.</strong> (Bachelor of Arts)</td>
+                      <td>SRTMU, Nanded</td>
+                      <td>2020</td>
+                      <td><strong>78.09%</strong></td>
+                      <td>First Class</td>
+                    </tr>
+                    <tr>
+                      <td><strong>H.S.C.</strong></td>
+                      <td>Latur Divisional Board</td>
+                      <td>2017</td>
+                      <td><strong>80.92%</strong></td>
+                      <td>Pass Class</td>
+                    </tr>
+                    <tr>
+                      <td><strong>S.S.C.</strong></td>
+                      <td>Latur Divisional Board</td>
+                      <td>2015</td>
+                      <td><strong>82.80%</strong></td>
+                      <td>First Class</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
 
             <div class="res-sheet-block">
               <h3 class="res-heading"><i class="fa-solid fa-certificate"></i> TECHNICAL CERTIFICATIONS & COURSES</h3>
-              <table class="res-table">
-                <thead>
-                  <tr>
-                    <th>Course / Certificate</th>
-                    <th>Institute / Body</th>
-                    <th>Year</th>
-                    <th>Score / Grade</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>Tally Prime</strong></td>
-                    <td>KLIC</td>
-                    <td>2024</td>
-                    <td>78%</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Advanced Excel</strong></td>
-                    <td>KLIC</td>
-                    <td>2024</td>
-                    <td>81%</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Data Entry & Data Management</strong></td>
-                    <td>KLIC</td>
-                    <td>2024</td>
-                    <td>84%</td>
-                  </tr>
-                  <tr>
-                    <td><strong>MSCIT</strong></td>
-                    <td>MKCL</td>
-                    <td>2019</td>
-                    <td>88.00% (First Class)</td>
-                  </tr>
-                  <tr>
-                    <td><strong>English 40 WPM Typing</strong></td>
-                    <td>MSCE</td>
-                    <td>2017</td>
-                    <td>67.00% (First Class)</td>
-                  </tr>
-                  <tr>
-                    <td><strong>English 30 WPM Typing</strong></td>
-                    <td>MSCE</td>
-                    <td>2018</td>
-                    <td>70.00% (First Class)</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Marathi 30 WPM Typing</strong></td>
-                    <td>MSCE</td>
-                    <td>2018</td>
-                    <td>62.00% (First Class)</td>
-                  </tr>
-                </tbody>
-              </table>
+              <div class="table-responsive">
+                <table class="res-table">
+                  <thead>
+                    <tr>
+                      <th>Course / Certificate</th>
+                      <th>Institute / Body</th>
+                      <th>Year</th>
+                      <th>Score / Grade</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Tally Prime</strong></td>
+                      <td>KLIC</td>
+                      <td>2024</td>
+                      <td>78%</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Advanced Excel</strong></td>
+                      <td>KLIC</td>
+                      <td>2024</td>
+                      <td>81%</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Data Entry & Data Management</strong></td>
+                      <td>KLIC</td>
+                      <td>2024</td>
+                      <td>84%</td>
+                    </tr>
+                    <tr>
+                      <td><strong>MSCIT</strong></td>
+                      <td>MKCL</td>
+                      <td>2019</td>
+                      <td>88.00% (First Class)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>English 40 WPM Typing</strong></td>
+                      <td>MSCE</td>
+                      <td>2017</td>
+                      <td>67.00% (First Class)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>English 30 WPM Typing</strong></td>
+                      <td>MSCE</td>
+                      <td>2018</td>
+                      <td>70.00% (First Class)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Marathi 30 WPM Typing</strong></td>
+                      <td>MSCE</td>
+                      <td>2018</td>
+                      <td>62.00% (First Class)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
 
             <div class="res-sheet-block">
